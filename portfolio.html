@@ -1,0 +1,31 @@
+<section class="portfoliopage">
+<div class="search">
+  <h1>Portfolio</h1>
+  <label for="searchField">Search: </label>
+  <input ng-model="query" id="searchField" placeholder="Search for work" autofocus>
+  <label>by:
+    <select ng-model="workOrder">
+      <option value="title">Title</option>
+      <option value="year">Year</option>
+    </select>
+  </label>
+  <label>
+    <input type="radio" ng-model="direction" name="direction" checked>
+    ascending
+  </label>
+  <label>
+    <input type="radio" ng-model="direction" name="direction" value="reverse">
+    descending
+  </label>
+</div>
+<ul>
+  <li class="work" ng-repeat="item in works | filter: query | orderBy: workOrder:direction">
+    <img ng-src="images/{{item.shortname}}.jpg" alt="Photo of {{item.title}}">
+    <div>
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.author + ', ' + item.year }}</p>
+      <a href="#/details/{{works.indexOf(item)}}">Details >></a>
+    </div>
+  </li>
+</ul>
+</section>
